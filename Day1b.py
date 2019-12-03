@@ -2,8 +2,18 @@
 from math import floor
 from sys import argv, exit, stderr
 
-def fuel_per_part(mass):
+def fuel_by_mass(mass):
 	return floor(int(mass) / 3) - 2
+
+def fuel_per_part(mass):
+	total_fuel = 0
+	while True:
+		partial_fuel = fuel_by_mass(mass)
+		if partial_fuel > 0:
+			mass = partial_fuel
+			total_fuel += partial_fuel
+		else:
+			return total_fuel
 
 def fuel_per_ship(file_name):
 	total_fuel = 0
